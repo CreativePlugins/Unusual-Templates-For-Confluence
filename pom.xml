@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>ru.creative.plugins.atlassian</groupId>
+    <artifactId>unusual.templates4confluence</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <organization>
+        <name>CreativePlugins</name>
+        <url>https://github.com/CreativePlugins/</url>
+    </organization>
+
+    <name>Unusual Templates4Confluence</name>
+    <description>If your problem too hard to be solved - you doing wrong way.</description>
+    <packaging>atlassian-plugin</packaging>
+
+    <url>https://github.com/CreativePlugins/Unusual-Templates-For-Confluence/</url>
+
+    <!-- ToDo: Create CI Plugin Store -->
+    <!--<distributionManagement>-->
+    <!--<repository>-->
+    <!--<id>cp-snapshot</id>-->
+    <!--<url></url>-->
+    <!--</repository>-->
+    <!--<snapshotRepository>-->
+    <!--<id>cp-production</id>-->
+    <!--<url></url>-->
+    <!--</snapshotRepository>-->
+    <!--</distributionManagement>-->
+    <scm>
+        <developerConnection>scm:git:ssh://git@github.com:CreativePlugins/Unusual-Templates-For-Confluence.git</developerConnection>
+        <url>${project.url}</url>
+    </scm>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.atlassian.confluence</groupId>
+            <artifactId>confluence</artifactId>
+            <version>${confluence.version}</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.atlassian.maven.plugins</groupId>
+                <artifactId>maven-confluence-plugin</artifactId>
+                <version>${amps.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <productVersion>${confluence.version}</productVersion>
+                    <productDataVersion>${confluence.data.version}</productDataVersion>
+                    <enableQuickReload>true</enableQuickReload>
+                    <enableFastdev>false</enableFastdev>
+                    <compressResources>false</compressResources>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <properties>
+        <!-- ToDo: select Confluence versions -->
+        <confluence.version>6.4.0</confluence.version>
+        <confluence.data.version>${confluence.version}</confluence.data.version>
+        <amps.version>6.3.7</amps.version>
+        <maven-compiler-plugin.version>2.3.1</maven-compiler-plugin.version>
+        <atlassian.plugin.key>${project.groupId}.${project.artifactId}</atlassian.plugin.key>
+        <!-- ToDo: connect to SQ Cloud? -->
+    </properties>
+
+    <issueManagement>
+        <system>Github Issues</system>
+        <url>https://github.com/CreativePlugins/Unusual-Templates-For-Confluence/issues</url>
+    </issueManagement>
+</project>

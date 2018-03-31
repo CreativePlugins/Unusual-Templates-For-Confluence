@@ -1,0 +1,21 @@
+<atlassian-plugin key="${project.groupId}.${project.artifactId}" name="${project.name}" plugins-version="2">
+    <plugin-info>
+        <description>${project.description}</description>
+        <version>${project.version}</version>
+        <vendor name="${project.organization.name}" url="${project.organization.url}"/>
+        <param name="atlassian-data-center-compatible">true</param>
+    </plugin-info>
+
+    <resource type="i18n" name="i18n" location="/i18n/app"/>
+
+
+    <web-resource key="UnusualTemplates4ConfluenceEntryPoint" name="Entry Point For Unusual Templates For Confluence">
+        <dependency>com.atlassian.auiplugin:ajs</dependency>
+        <resource type="download" name="t4confluenceEntry.js" location="/js/entry.js"/>
+        <resource location="/js/t4confluence.pack.js" name="t4confluence.pack.js" type="download">
+            <param name="batch" value="false"/>
+        </resource>
+        <context>atl.general</context>
+    </web-resource>
+
+</atlassian-plugin>
