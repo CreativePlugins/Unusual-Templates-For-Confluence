@@ -1,6 +1,7 @@
 import React from "react";
 import {Icon, Modal} from "antd";
 import {observe} from "../utils/DataUtils";
+import '../../sass/nomalize.css'
 
 class IconsContainer extends React.Component {
     constructor(props) {
