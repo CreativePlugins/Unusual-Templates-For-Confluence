@@ -11,7 +11,7 @@ AJS.bind('init.rte', function() {
 function createToolbar(data) {
     //help_buttons_group
     var helpGroup = $('#rte-button-help').parent('ul');
-    helpGroup.before("<span id='t4cl-react-entry-point'/>");
+    helpGroup.before("<ul id='t4cl-react-entry-point' class='aui-buttons aui-button-subtle rte-toolbar-group-searchreplace' />");
     //init React App
     CreativePlugins.Confluence.UT4C.render(data);
     //editor interaction example

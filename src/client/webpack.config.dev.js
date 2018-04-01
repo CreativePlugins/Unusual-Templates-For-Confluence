@@ -28,7 +28,8 @@ module.exports = {
                                 "polyfill": true,
                                 "regenerator": true,
                                 "moduleName": "babel-runtime"
-                            }]
+                            }],
+                            ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }]
                         ]
                     },
                 }],
@@ -38,6 +39,10 @@ module.exports = {
                 use: [
                     'json-loader'
                 ]
+            },
+            {
+                test: /\.css$/,
+                use: [ 'style-loader', 'css-loader' ]
             }
         ]
     }
