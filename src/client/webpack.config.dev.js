@@ -1,10 +1,10 @@
+require('babel-polyfill');
 const webpack = require('webpack');
 const path = require('path');
 
 module.exports = {
     entry: {
         t4confluence: [
-            'babel-polyfill',
             './react/app.js'
         ]
     },
@@ -21,9 +21,14 @@ module.exports = {
                 use: [{
                     loader: 'babel-loader',
                     options: {
-                        presets: ['es2015', 'react'],
+                        presets: ['@babel/env', '@babel/react'],
                         plugins: [
-                            ['import', { libraryName: 'antd', style: true }]
+                            ["@babel/transform-runtime", {
+                                "helpers": false,
+                                "polyfill": true,
+                                "regenerator": true,
+                                "moduleName": "babel-runtime"
+                            }]
                         ]
                     },
                 }],

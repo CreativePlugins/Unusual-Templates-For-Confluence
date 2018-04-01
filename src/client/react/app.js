@@ -2,6 +2,7 @@ import {initData} from "./utils/DataUtils";
 import initStore from './store/Store';
 import ReactDOM from "react-dom";
 import React from "react";
+import { Provider } from 'react-redux'
 
 //Add JIRA namespace function analogue
 AJS.$.namespace = function() {
@@ -25,7 +26,7 @@ CreativePlugins.Confluence.UT4C.render = function (data) {
 
     ReactDOM.render(
         <Provider store={store}>
-            <div />
+            <span />
         </Provider>,
         document.getElementById('t4cl-react-entry-point')
     );
