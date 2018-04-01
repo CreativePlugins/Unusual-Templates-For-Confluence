@@ -47,8 +47,8 @@ class IconsContainer extends React.Component {
 
     render() {
         return (
-            <li>
-                <Icon onClick={this.showModal} style={{ fontSize: 16, color: '#08c', marginTop: '5px' }} type="github"/>
+            <li className="toolbar-item aui-button aui-button-subtle cp-line-height-26" data-tooltip="Github-Popup">
+                <Icon onClick={this.showModal} style={{ fontSize: 16, color: '#08c'}} type="github"/>
                 <Modal
                     title="Basic Modal"
                     visible={this.state.visible}
