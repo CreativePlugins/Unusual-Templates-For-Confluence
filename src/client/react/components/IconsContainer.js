@@ -38,8 +38,8 @@ class IconsContainer extends React.Component {
     render() {
         return (
             <Wrapper>
-                <li className="toolbar-item aui-button aui-button-subtle cp-line-height-26" data-tooltip="Github-Popup">
-                    <Icon onClick={this.handleOk} style={{ fontSize: 16, color: '#08c'}} type="github"/>
+                <li onClick={this.handleOk} className="toolbar-item aui-button aui-button-subtle cp-line-height-26" data-tooltip="Github-Popup">
+                    <Icon  style={{ fontSize: 16, color: '#08c'}} type="github"/>
                 </li>
                 <TemplatesAdministrationModule />
             </Wrapper>

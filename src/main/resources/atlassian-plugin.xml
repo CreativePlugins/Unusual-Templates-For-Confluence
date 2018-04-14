@@ -6,6 +6,11 @@
         <param name="atlassian-data-center-compatible">true</param>
     </plugin-info>
 
+    <component-import key="ao" name="Active Objects service"
+                      interface="com.atlassian.activeobjects.external.ActiveObjects">
+        <description>Component to access Active Objects functionality from the plugin</description>
+    </component-import>
+
     <resource type="i18n" name="i18n" location="/i18n/app"/>
 
 
@@ -17,5 +22,23 @@
         </resource>
         <context>atl.general</context>
     </web-resource>
+
+    <ao key="CP4C_Templates">
+        <entity>ru.creative.plugins.confluence.templates.model.Template</entity>
+    </ao>
+    <ao key="CP4C_Tags">
+        <entity>ru.creative.plugins.confluence.templates.model.Tag</entity>
+    </ao>
+
+    <rest key="user-templates-rest" name="user-templates-rest" path="/usertemplates" version="1.0"
+          description="REST User Templates 4 confluence"/>
+
+    <component key="CP4C_UserTemplatesService"
+               class="ru.creative.plugins.confluence.templates.service.UserTemplatesService">
+    </component>
+    <component key="CP4C_TemplatesDao"
+               class="ru.creative.plugins.confluence.templates.dao.TemplatesDaoImpl">
+        <interface>ru.creative.plugins.confluence.templates.dao.TemplatesDao</interface>
+    </component>
 
 </atlassian-plugin>

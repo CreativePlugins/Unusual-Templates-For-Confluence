@@ -14,8 +14,6 @@ function createToolbar(data) {
     helpGroup.before("<ul id='t4cl-react-entry-point' class='aui-buttons aui-button-subtle rte-toolbar-group-searchreplace' />");
     //init React App
     CreativePlugins.Confluence.UT4C.render(data);
-    //editor interaction example
-    //tinyMCE.activeEditor.execCommand('mceInsertContent', false, featureTemplate);
 }
 
 function initRequestParams() {

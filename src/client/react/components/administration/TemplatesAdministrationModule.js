@@ -32,8 +32,8 @@ class TemplatesAdministrationModule extends React.Component {
 
     render(){
         return (
-            <li className="toolbar-item aui-button aui-button-subtle cp-line-height-26" data-tooltip="Github-Popup">
-                <Icon onClick={this.showModal} style={{ fontSize: 16, color: '#08c'}} type="setting"/>
+            <li onClick={this.showModal} className="toolbar-item aui-button aui-button-subtle cp-line-height-26" data-tooltip="Github-Popup">
+                <Icon  style={{ fontSize: 16, color: '#08c'}} type="setting"/>
                 <Modal title="Basic Modal" visible={this.state.visible} onOk={this.handleOk} onCancel={this.handleCancel}>
                     <p>Some contents...</p>
                     <p>Some contents...</p>
