@@ -7,12 +7,15 @@ import java.util.Set;
 
 public interface TemplatesDao {
 
-    Template getTemplateById(Integer id, String creator);
+    Template getTemplateById(Integer id);
+
+    Template[] getUserTemplates(String creator);
 
     void deleteTemplate(Template template);
 
+    void deleteTemplateById(Integer id);
+
     Template updateTemplate(Template template);
 
-    Template createTemplate(String name, String description, String type, String body, String templateType, String creator, Set<Tag> tags);
-
+    Template createOrUpdateTemplate(Template template, String name, String description, String type, String body, String templateType, String creator, Set<Tag> tags);
 }

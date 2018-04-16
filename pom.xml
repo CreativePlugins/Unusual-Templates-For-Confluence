@@ -49,6 +49,12 @@
             <version>${ao.version}</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -85,6 +91,7 @@
         <maven-compiler-plugin.version>2.3.1</maven-compiler-plugin.version>
         <atlassian.plugin.key>${project.groupId}.${project.artifactId}</atlassian.plugin.key>
         <ao.version>0.19.7</ao.version>
+        <lombok.version>1.16.20</lombok.version>
         <!-- ToDo: connect to SQ Cloud? -->
     </properties>
 
