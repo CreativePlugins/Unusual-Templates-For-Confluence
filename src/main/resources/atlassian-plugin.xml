@@ -24,16 +24,10 @@
     </web-resource>
 
     <!--ACTIVE OBJECTS-->
-    <ao key="UC4C_AO_AbstractTemplate">
+    <ao key="UC4C_AO_Templates">
         <entity>ru.creative.plugins.confluence.templates.model.AbstractTemplate</entity>
-    </ao>
-    <ao key="UC4C_AO_UserTemplate">
         <entity>ru.creative.plugins.confluence.templates.model.UserTemplate</entity>
-    </ao>
-    <ao key="UC4C_AO_Tags">
         <entity>ru.creative.plugins.confluence.templates.model.Tag</entity>
-    </ao>
-    <ao key="UC4C_AO_TagToTemplate">
         <entity>ru.creative.plugins.confluence.templates.model.TagToTemplate</entity>
     </ao>
 

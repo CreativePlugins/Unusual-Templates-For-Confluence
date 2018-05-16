@@ -1,8 +1,9 @@
 package ru.creative.plugins.confluence.templates.dao;
 
 
+import com.atlassian.activeobjects.external.ActiveObjects;
 import lombok.extern.slf4j.Slf4j;
-import net.java.ao.EntityManager;
+import net.java.ao.DBParam;
 import net.java.ao.Query;
 import ru.creative.plugins.confluence.templates.dto.UserTemplateDto;
 import ru.creative.plugins.confluence.templates.model.UserTemplate;
@@ -15,13 +16,14 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 @Slf4j
 public class UserTemplateDaoImpl implements UserTemplateDao {
-    private final EntityManager entityManager;
+    private final ActiveObjects entityManager;
     private final TagDao tagDao;
 
-    public UserTemplateDaoImpl(EntityManager entityManager, TagDao tagDao) {
+    public UserTemplateDaoImpl(ActiveObjects entityManager, TagDao tagDao) {
         this.entityManager = checkNotNull(entityManager);
         this.tagDao = checkNotNull(tagDao);
     }
+
 
     @Override
     public UserTemplate getUserTemplate(Integer id) throws SQLException {
@@ -40,7 +42,12 @@ public class UserTemplateDaoImpl implements UserTemplateDao {
 
     @Override
     public UserTemplate addUserTemplate(final UserTemplateDto dto) throws SQLException {
-        final UserTemplate template = entityManager.create(UserTemplate.class);
+        final UserTemplate template = entityManager.create(UserTemplate.class,
+                new DBParam("NAME", dto.getName()),
+                new DBParam("DESCR", dto.getDescription()),
+                new DBParam("BODY", dto.getBody()),
+                new DBParam("CREATOR", dto.getCreator())
+        );
         setUserTemplateFields(template, dto).save();
         if(!dto.getTags().isEmpty()){
             for(String tag : dto.getTags() ){

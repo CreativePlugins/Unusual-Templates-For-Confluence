@@ -1,16 +1,19 @@
 package ru.creative.plugins.confluence.templates.rest;
 
+import com.atlassian.confluence.user.AuthenticatedUserThreadLocal;
+import com.atlassian.confluence.user.ConfluenceUser;
+import lombok.extern.slf4j.Slf4j;
 import ru.creative.plugins.confluence.templates.dto.UserTemplateDto;
-import ru.creative.plugins.confluence.templates.dto.UserTemplatesMetaDto;
 import ru.creative.plugins.confluence.templates.model.UserTemplate;
 import ru.creative.plugins.confluence.templates.service.UserTemplatesService;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.HashMap;
-import java.util.Map;
+import java.sql.SQLException;
+import java.util.List;
 
+@Slf4j
 @Path("/")
 public class UserTemplatesRest {
 
@@ -20,22 +23,23 @@ public class UserTemplatesRest {
         this.userTemplatesService = userTemplatesService;
     }
 
-    @POST
+    @GET
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/getUserTemplates")
-    public Response getUserTemplates(UserTemplatesMetaDto userTemplatesMetaDto) {
-        Map<String, UserTemplatesMetaDto> result = new HashMap<>();
-        result.put("getUserTemplates", userTemplatesMetaDto);
-        return Response.ok(result).build();
+    public Response getUserTemplates() throws SQLException {
+        ConfluenceUser user = AuthenticatedUserThreadLocal.get();
+        List<UserTemplate> userTemplate = userTemplatesService.getUserTemplates(user.getKey().getStringValue());
+        return Response.ok(userTemplate).build();
     }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/saveUserTemplates")
-    public Response saveUserTemplate(UserTemplateDto userTemplateDto) {
-        UserTemplate userTemplate = userTemplatesService.saveUserTemplate(userTemplateDto);
+    @Path("/addUserTemplate")
+    public Response addUserTemplate(UserTemplateDto userTemplateDto) throws SQLException {
+        log.error(userTemplateDto.toString());
+        UserTemplate userTemplate = userTemplatesService.addUserTemplate(userTemplateDto);
         return Response.ok(userTemplate).build();
     }
 
@@ -43,7 +47,7 @@ public class UserTemplatesRest {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/getPing")
-    public Response getUserTemplates() {
+    public Response ping() {
         return Response.ok().build();
     }
 }

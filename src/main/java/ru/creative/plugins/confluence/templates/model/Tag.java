@@ -6,7 +6,7 @@ import net.java.ao.schema.Table;
 import net.java.ao.schema.Unique;
 
 @Preload
-@Table("UC4C_Tags")
+@Table("UCFC_Tags")
 public interface Tag extends Entity {
     @Unique
     @NotNull

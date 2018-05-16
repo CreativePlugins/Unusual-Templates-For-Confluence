@@ -1,7 +1,8 @@
 package ru.creative.plugins.confluence.templates.dao;
 
+import com.atlassian.activeobjects.external.ActiveObjects;
 import lombok.extern.slf4j.Slf4j;
-import net.java.ao.EntityManager;
+import net.java.ao.DBParam;
 import net.java.ao.Query;
 import ru.creative.plugins.confluence.templates.model.AbstractTemplate;
 import ru.creative.plugins.confluence.templates.model.Tag;
@@ -13,9 +14,9 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 @Slf4j
 public class TagDaoImpl implements TagDao {
-    private final EntityManager entityManager;
+    private final ActiveObjects entityManager;
 
-    public TagDaoImpl(EntityManager entityManager) {
+    public TagDaoImpl(ActiveObjects entityManager) {
         this.entityManager = checkNotNull(entityManager);
     }
 
@@ -36,9 +37,11 @@ public class TagDaoImpl implements TagDao {
 
     @Override
     public Tag createTag(String name) throws SQLException {
-        final Tag tag = entityManager.create(Tag.class);
-        tag.setName(name);
-        //ToDo: check if save needed
+        final Tag tag = entityManager.create(Tag.class, new DBParam("NAME", name));
+        //ToDo: check if s
+        //
+        //
+        // ave needed
         //tag.save();
         return tag;
     }
