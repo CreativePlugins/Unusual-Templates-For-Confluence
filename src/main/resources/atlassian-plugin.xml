@@ -6,14 +6,14 @@
         <param name="atlassian-data-center-compatible">true</param>
     </plugin-info>
 
+    <!--COMPONENT IMPORTS-->
     <component-import key="ao" name="Active Objects service"
                       interface="com.atlassian.activeobjects.external.ActiveObjects">
         <description>Component to access Active Objects functionality from the plugin</description>
     </component-import>
 
+    <!--RESOURCES-->
     <resource type="i18n" name="i18n" location="/i18n/app"/>
-
-
     <web-resource key="UnusualTemplates4ConfluenceEntryPoint" name="Entry Point For Unusual Templates For Confluence">
         <dependency>com.atlassian.auiplugin:ajs</dependency>
         <resource type="download" name="t4confluenceEntry.js" location="/js/entry.js"/>
@@ -23,22 +23,37 @@
         <context>atl.general</context>
     </web-resource>
 
-    <ao key="CP4C_Templates">
-        <entity>ru.creative.plugins.confluence.templates.model.Template</entity>
+    <!--ACTIVE OBJECTS-->
+    <ao key="UC4C_AO_AbstractTemplate">
+        <entity>ru.creative.plugins.confluence.templates.model.AbstractTemplate</entity>
     </ao>
-    <ao key="CP4C_Tags">
+    <ao key="UC4C_AO_UserTemplate">
+        <entity>ru.creative.plugins.confluence.templates.model.UserTemplate</entity>
+    </ao>
+    <ao key="UC4C_AO_Tags">
         <entity>ru.creative.plugins.confluence.templates.model.Tag</entity>
     </ao>
+    <ao key="UC4C_AO_TagToTemplate">
+        <entity>ru.creative.plugins.confluence.templates.model.TagToTemplate</entity>
+    </ao>
 
+    <!--REST ENDPOINTS-->
     <rest key="user-templates-rest" name="user-templates-rest" path="/usertemplates" version="1.0"
           description="REST User Templates 4 confluence"/>
 
-    <component key="CP4C_UserTemplatesService"
-               class="ru.creative.plugins.confluence.templates.service.UserTemplatesService">
+    <!--DAO-->
+    <component key="CP4C_DAO_Tag"
+               class="ru.creative.plugins.confluence.templates.dao.TagDaoImpl">
+        <interface>ru.creative.plugins.confluence.templates.dao.TagDao</interface>
     </component>
-    <component key="CP4C_TemplatesDao"
-               class="ru.creative.plugins.confluence.templates.dao.TemplatesDaoImpl">
-        <interface>ru.creative.plugins.confluence.templates.dao.TemplatesDao</interface>
+    <component key="CP4C_DAO_UserTemplate"
+               class="ru.creative.plugins.confluence.templates.dao.UserTemplateDaoImpl">
+        <interface>ru.creative.plugins.confluence.templates.dao.UserTemplateDao</interface>
+    </component>
+
+    <!--SERVICES-->
+    <component key="CP4C_SERVICE_UserTemplates"
+               class="ru.creative.plugins.confluence.templates.service.UserTemplatesService">
     </component>
 
 </atlassian-plugin>

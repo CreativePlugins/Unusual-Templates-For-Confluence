@@ -3,6 +3,7 @@ package ru.creative.plugins.confluence.templates.dto;
 import lombok.Data;
 import ru.creative.plugins.confluence.templates.model.Tag;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -13,6 +14,5 @@ public class UserTemplateDto {
     public String type;
     public String body;
     public String creator;
-    public Set<Tag> tags;
-    public Set<String> hotKeys;
+    public Set<String> tags = new HashSet<>();
 }

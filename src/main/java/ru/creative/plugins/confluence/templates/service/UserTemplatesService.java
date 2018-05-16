@@ -1,24 +1,21 @@
 package ru.creative.plugins.confluence.templates.service;
 
-import ru.creative.plugins.confluence.templates.dao.TemplatesDao;
+import ru.creative.plugins.confluence.templates.dao.UserTemplateDao;
 import ru.creative.plugins.confluence.templates.dto.UserTemplateDto;
-import ru.creative.plugins.confluence.templates.model.Template;
+import ru.creative.plugins.confluence.templates.model.UserTemplate;
+
+import java.sql.SQLException;
 
 public class UserTemplatesService {
 
 
-    private final TemplatesDao templatesDao;
+    private final UserTemplateDao userTemplateDao;
 
-    public UserTemplatesService(TemplatesDao templatesDao) {
-        this.templatesDao = templatesDao;
+    public UserTemplatesService(UserTemplateDao userTemplateDao) {
+        this.userTemplateDao = userTemplateDao;
     }
 
-    public Template saveUserTemplate(UserTemplateDto userTemplateDto) {
-        Template template = templatesDao.getTemplateById(userTemplateDto.getId(), userTemplateDto.getCreator());
-        if(template == null){
-            templatesDao.createTemplate(userTemplateDto.getName(), userTemplateDto.getDescription(), userTemplateDto.getType(),
-                    userTemplateDto.getBody(), userTemplateDto.getType(), userTemplateDto.getCreator(), userTemplateDto.getTags());
-        }
-        return template;
+    public UserTemplate addUserTemplate(UserTemplateDto dto) throws SQLException {
+        return userTemplateDao.addUserTemplate(dto);
     }
 }

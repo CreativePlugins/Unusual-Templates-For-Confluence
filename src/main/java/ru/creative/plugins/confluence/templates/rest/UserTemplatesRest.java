@@ -1,14 +1,15 @@
 package ru.creative.plugins.confluence.templates.rest;
 
-import org.apache.commons.collections.map.SingletonMap;
 import ru.creative.plugins.confluence.templates.dto.UserTemplateDto;
 import ru.creative.plugins.confluence.templates.dto.UserTemplatesMetaDto;
-import ru.creative.plugins.confluence.templates.model.Template;
+import ru.creative.plugins.confluence.templates.model.UserTemplate;
 import ru.creative.plugins.confluence.templates.service.UserTemplatesService;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.HashMap;
+import java.util.Map;
 
 @Path("/")
 public class UserTemplatesRest {
@@ -24,8 +25,9 @@ public class UserTemplatesRest {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/getUserTemplates")
     public Response getUserTemplates(UserTemplatesMetaDto userTemplatesMetaDto) {
-
-        return Response.ok(new SingletonMap("getUserTemplates", userTemplatesMetaDto)).build();
+        Map<String, UserTemplatesMetaDto> result = new HashMap<>();
+        result.put("getUserTemplates", userTemplatesMetaDto);
+        return Response.ok(result).build();
     }
 
     @POST
@@ -33,8 +35,8 @@ public class UserTemplatesRest {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/saveUserTemplates")
     public Response saveUserTemplate(UserTemplateDto userTemplateDto) {
-        Template template = userTemplatesService.saveUserTemplate(userTemplateDto);
-        return Response.ok(template).build();
+        UserTemplate userTemplate = userTemplatesService.saveUserTemplate(userTemplateDto);
+        return Response.ok(userTemplate).build();
     }
 
     @GET

@@ -3,10 +3,9 @@ package ru.creative.plugins.confluence.templates.model;
 import net.java.ao.Entity;
 
 public interface TagToTemplate extends Entity {
+    AbstractTemplate getTeplate();
+    void setTemplate(AbstractTemplate template);
 
-    public void setTag(Tag tag);
-    public Tag getTag();
-
-    public void setTemplate(Template template);
-    public Template getTemplate();
+    Tag getTag();
+    void setTag(Tag tag);
 }
