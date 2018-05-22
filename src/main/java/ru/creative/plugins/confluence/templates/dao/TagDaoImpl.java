@@ -38,11 +38,7 @@ public class TagDaoImpl implements TagDao {
     @Override
     public Tag createTag(String name) throws SQLException {
         final Tag tag = entityManager.create(Tag.class, new DBParam("NAME", name));
-        //ToDo: check if s
-        //
-        //
-        // ave needed
-        //tag.save();
+        tag.save();
         return tag;
     }
 
@@ -55,7 +51,7 @@ public class TagDaoImpl implements TagDao {
     public void associateTagToTemplate(Tag tag, AbstractTemplate template) throws SQLException {
         final TagToTemplate tagToTemplate = entityManager.create(TagToTemplate.class);
         tagToTemplate.setTag(tag);
-        tagToTemplate.setTemplate(template);
+        tagToTemplate.setAbstractTemplate(template);
         tagToTemplate.save();
     }
 }

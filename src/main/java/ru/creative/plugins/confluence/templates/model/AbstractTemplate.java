@@ -6,7 +6,6 @@ import net.java.ao.schema.StringLength;
 import net.java.ao.schema.Table;
 
 @Polymorphic
-@Table("UCFC_A_Template")
 public interface AbstractTemplate extends Entity {
 
     @NotNull

@@ -29,7 +29,7 @@ public class UserTemplatesRest {
     @Path("/getUserTemplates")
     public Response getUserTemplates() throws SQLException {
         ConfluenceUser user = AuthenticatedUserThreadLocal.get();
-        List<UserTemplate> userTemplate = userTemplatesService.getUserTemplates(user.getKey().getStringValue());
+        List<UserTemplateDto> userTemplate = userTemplatesService.getUserTemplates(user.getName());
         return Response.ok(userTemplate).build();
     }
 
@@ -39,7 +39,7 @@ public class UserTemplatesRest {
     @Path("/addUserTemplate")
     public Response addUserTemplate(UserTemplateDto userTemplateDto) throws SQLException {
         log.error(userTemplateDto.toString());
-        UserTemplate userTemplate = userTemplatesService.addUserTemplate(userTemplateDto);
+        UserTemplateDto userTemplate = userTemplatesService.addUserTemplate(userTemplateDto);
         return Response.ok(userTemplate).build();
     }
 

@@ -54,7 +54,9 @@ public class UserTemplateDaoImpl implements UserTemplateDao {
                 tagDao.associateTagToTemplate(tagDao.getOrCreateTag(tag), template);
             }
         }
-        return template;
+        log.error(template.toString());
+        log.error("tags are:" + dto.getTags());
+        return getUserTemplate(template.getID());
     }
 
     @Override
