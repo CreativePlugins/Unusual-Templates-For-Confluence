@@ -14,7 +14,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Slf4j
-@Path("/")
+@Path("/user")
 public class UserTemplatesRest {
 
     private final UserTemplatesService userTemplatesService;
@@ -27,7 +27,7 @@ public class UserTemplatesRest {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/getUserTemplates")
-    public Response getUserTemplates() throws SQLException {
+    public Response getUserTemplates() {
         ConfluenceUser user = AuthenticatedUserThreadLocal.get();
         List<UserTemplateDto> userTemplate = userTemplatesService.getUserTemplates(user.getName());
         return Response.ok(userTemplate).build();
@@ -37,17 +37,14 @@ public class UserTemplatesRest {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/addUserTemplate")
-    public Response addUserTemplate(UserTemplateDto userTemplateDto) throws SQLException {
+    public Response addUserTemplate(UserTemplateDto userTemplateDto) {
         log.error(userTemplateDto.toString());
-        UserTemplateDto userTemplate = userTemplatesService.addUserTemplate(userTemplateDto);
+        UserTemplateDto userTemplate;
+        if(userTemplateDto.getId() != null){
+            userTemplate = userTemplatesService.updateUserTemplate(userTemplateDto);
+        }else {
+            userTemplate = userTemplatesService.addUserTemplate(userTemplateDto);
+        }
         return Response.ok(userTemplate).build();
-    }
-
-    @GET
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("/getPing")
-    public Response ping() {
-        return Response.ok().build();
     }
 }

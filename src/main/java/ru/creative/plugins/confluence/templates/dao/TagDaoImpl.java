@@ -21,7 +21,7 @@ public class TagDaoImpl implements TagDao {
     }
 
     @Override
-    public Tag getTag(final String name) throws SQLException {
+    public Tag getTag(final String name) {
         final Tag[] tags = entityManager.find(Tag.class, Query.select().where("name = ?", name));
         if (tags.length > 1){
             log.error("Cannot have two tags with same name");
@@ -30,28 +30,40 @@ public class TagDaoImpl implements TagDao {
     }
 
     @Override
-    public Tag getOrCreateTag(final String name) throws SQLException {
+    public Tag getOrCreateTag(final String name) {
         final Tag t = getTag(name);
         return t != null ? t : createTag(name);
     }
 
     @Override
-    public Tag createTag(String name) throws SQLException {
+    public Tag createTag(String name) {
         final Tag tag = entityManager.create(Tag.class, new DBParam("NAME", name));
         tag.save();
         return tag;
     }
 
     @Override
-    public void deleteTag(final Tag tag) throws SQLException {
+    public void deleteTag(final Tag tag) {
         entityManager.delete(tag);
     }
 
     @Override
-    public void associateTagToTemplate(Tag tag, AbstractTemplate template) throws SQLException {
+    public void associateTagToTemplate(Tag tag, AbstractTemplate template) {
         final TagToTemplate tagToTemplate = entityManager.create(TagToTemplate.class);
         tagToTemplate.setTag(tag);
         tagToTemplate.setAbstractTemplate(template);
         tagToTemplate.save();
+    }
+
+    @Override
+    public void removeTagToTemplateAssociation(Tag tag, AbstractTemplate template){
+        final TagToTemplate[] tagToTemplates = entityManager.find(TagToTemplate.class,
+                Query.select().where("TAG_ID = ? AND ABSTRACT_TEMPLATE_ID = ?", tag.getID(), template.getID()));
+        if (tagToTemplates.length > 1){
+            log.error("Cannot have two tags to template association with same name");
+        }
+        if(tagToTemplates.length == 1){
+            entityManager.delete(tagToTemplates[0]);
+        }
     }
 }

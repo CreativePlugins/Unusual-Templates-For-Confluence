@@ -1,6 +1,7 @@
 package ru.creative.plugins.confluence.templates.dao;
 
 import ru.creative.plugins.confluence.templates.dto.UserTemplateDto;
+import ru.creative.plugins.confluence.templates.model.AbstractTemplate;
 import ru.creative.plugins.confluence.templates.model.UserTemplate;
 
 import java.sql.SQLException;
@@ -8,13 +9,13 @@ import java.util.List;
 
 public interface UserTemplateDao {
 
-    UserTemplate getUserTemplate(Integer id) throws SQLException;
+    UserTemplate getUserTemplate(Integer id);
 
-    List<UserTemplate> getUserCreatedTemplates(String creator) throws SQLException;
+    List<UserTemplate> getUserCreatedTemplates(String creator);
 
-    UserTemplate addUserTemplate(UserTemplateDto template) throws SQLException;
+    UserTemplate addUserTemplate(UserTemplateDto template);
 
-    UserTemplate updateTemplate(UserTemplateDto dto) throws SQLException;
+    UserTemplate updateUserTemplate(UserTemplateDto dto);
 
-    void deleteTemplate(UserTemplate template) throws SQLException;
+    void deleteTemplate(AbstractTemplate template);
 }

@@ -16,12 +16,16 @@ public class UserTemplatesService {
         this.userTemplateDao = userTemplateDao;
     }
 
-    public UserTemplateDto addUserTemplate(UserTemplateDto dto) throws SQLException {
-        return UserTemplateDto.convert(userTemplateDao.addUserTemplate(dto));
+    public UserTemplateDto addUserTemplate(UserTemplateDto dto) {
+        return new UserTemplateDto(userTemplateDao.addUserTemplate(dto));
     }
 
-    public List<UserTemplateDto> getUserTemplates(String name) throws SQLException {
+    public UserTemplateDto updateUserTemplate(UserTemplateDto dto) {
+        return new UserTemplateDto(userTemplateDao.updateUserTemplate(dto));
+    }
+
+    public List<UserTemplateDto> getUserTemplates(String name) {
         return userTemplateDao.getUserCreatedTemplates(name).stream()
-                .map(UserTemplateDto::convert).collect(Collectors.toList());
+                .map(UserTemplateDto::new).collect(Collectors.toList());
     }
 }

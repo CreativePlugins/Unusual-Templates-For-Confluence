@@ -27,6 +27,7 @@
     <ao key="UC4C_AO_Templates">
         <entity>ru.creative.plugins.confluence.templates.model.AbstractTemplate</entity>
         <entity>ru.creative.plugins.confluence.templates.model.UserTemplate</entity>
+        <entity>ru.creative.plugins.confluence.templates.model.SpaceTemplate</entity>
         <entity>ru.creative.plugins.confluence.templates.model.Tag</entity>
         <entity>ru.creative.plugins.confluence.templates.model.TagToTemplate</entity>
     </ao>
@@ -39,6 +40,10 @@
     <component key="CP4C_DAO_Tag"
                class="ru.creative.plugins.confluence.templates.dao.TagDaoImpl">
         <interface>ru.creative.plugins.confluence.templates.dao.TagDao</interface>
+    </component>
+    <component key="CP4C_DAO_A_Template"
+               class="ru.creative.plugins.confluence.templates.dao.AbstractTemplateDaoImpl">
+        <interface>ru.creative.plugins.confluence.templates.dao.AbstractTemplateDao</interface>
     </component>
     <component key="CP4C_DAO_UserTemplate"
                class="ru.creative.plugins.confluence.templates.dao.UserTemplateDaoImpl">
