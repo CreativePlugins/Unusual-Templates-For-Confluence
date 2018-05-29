@@ -12,4 +12,5 @@ public class UserTemplateDto extends AbstractTemplateDto{
     public UserTemplateDto(UserTemplate ut){
         super(ut.getID(), ut.getName(), ut.getDescription(), ut.getBody(), ut.getCreator(), ut.getStatus(), ut.getTags());
     }
+
 }

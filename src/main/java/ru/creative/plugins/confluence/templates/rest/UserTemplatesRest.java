@@ -4,13 +4,11 @@ import com.atlassian.confluence.user.AuthenticatedUserThreadLocal;
 import com.atlassian.confluence.user.ConfluenceUser;
 import lombok.extern.slf4j.Slf4j;
 import ru.creative.plugins.confluence.templates.dto.UserTemplateDto;
-import ru.creative.plugins.confluence.templates.model.UserTemplate;
 import ru.creative.plugins.confluence.templates.service.UserTemplatesService;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.sql.SQLException;
 import java.util.List;
 
 @Slf4j
@@ -26,7 +24,7 @@ public class UserTemplatesRest {
     @GET
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/getUserTemplates")
+    @Path("/getTemplates")
     public Response getUserTemplates() {
         ConfluenceUser user = AuthenticatedUserThreadLocal.get();
         List<UserTemplateDto> userTemplate = userTemplatesService.getUserTemplates(user.getName());
@@ -36,9 +34,8 @@ public class UserTemplatesRest {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/addUserTemplate")
+    @Path("/addTemplate")
     public Response addUserTemplate(UserTemplateDto userTemplateDto) {
-        log.error(userTemplateDto.toString());
         UserTemplateDto userTemplate;
         if(userTemplateDto.getId() != null){
             userTemplate = userTemplatesService.updateUserTemplate(userTemplateDto);

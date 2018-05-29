@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AbstractTemplateDto {
+public class AbstractTemplateDto{
     public Integer id;
     public String name;
     public String description;
@@ -30,6 +30,4 @@ public class AbstractTemplateDto {
         this.status = status;
         this.tags = Arrays.stream(tags).map(Tag::getName).collect(Collectors.toSet());
     }
-
-
 }

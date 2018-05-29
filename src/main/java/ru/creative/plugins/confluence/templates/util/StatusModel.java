@@ -1,7 +1,7 @@
 package ru.creative.plugins.confluence.templates.util;
 
 public enum StatusModel {
-    NEW("NEW"), ACTIVE("ACTIVE"), DISABLED("DISABLED"), REMOVED("REMOVED");
+    NEW("NEW"), DRAFT("DRAFT"), ACTIVE("ACTIVE"), DISABLED("DISABLED"), REMOVED("REMOVED");
 
     private final String status;
 

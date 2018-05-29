@@ -3,7 +3,6 @@ package ru.creative.plugins.confluence.templates.service;
 import ru.creative.plugins.confluence.templates.dao.UserTemplateDao;
 import ru.creative.plugins.confluence.templates.dto.UserTemplateDto;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
 
